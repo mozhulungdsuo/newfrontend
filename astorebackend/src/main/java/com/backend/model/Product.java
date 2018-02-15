@@ -8,6 +8,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -15,7 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 @Entity
 public class Product {
 @Id
-@GeneratedValue
+//@GeneratedValue
 private String pid;
 private String pname;
 private String description;

@@ -44,7 +44,7 @@ public class AdminController {
 	    return mv;
 		
 	}
-	@RequestMapping(value="/admin/saveCat",method=RequestMethod.POST)
+	@RequestMapping(value="/saveCat",method=RequestMethod.POST)
 	public ModelAndView saveCategoryData(@RequestParam("cid")  String cid,@RequestParam("cname") String cname)
 	{
 		ModelAndView mv=new ModelAndView();
@@ -78,11 +78,12 @@ public class AdminController {
 	{
 		ModelAndView mv=new ModelAndView();
 		Product prod=new Product();
-		prod.setPid(req.getParameter("pid"));	
+		prod.setPid(req.getParameter("pid"));
+		System.out.println(req.getParameter("pid"));
 		prod.setPname(req.getParameter("pname"));
 		prod.setDescription(req.getParameter("description"));
 		prod.setPrice(req.getParameter("price"));
-		prod.setStock(req.getParameter("stock"));
+		prod.setStock(req.getParameter("Stock"));
 		//prod.setCategory(req.getParameter(""));
 		String cid=req.getParameter("cid");
 		String sid=req.getParameter("sid");
