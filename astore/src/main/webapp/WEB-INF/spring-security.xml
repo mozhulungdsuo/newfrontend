@@ -27,8 +27,8 @@ authentication-success-forward-url="/userLogged"
 <authentication-manager>
 <authentication-provider>
 <jdbc-user-service data-source-ref="datasource"
-users-by-username-query="select email,password,enabled from user where email=?"
-authorities-by-username-query="select email,role from user where email=?"
+users-by-username-query="select email,password,enabled from users where email=?"
+authorities-by-username-query="select email,role from users where email=?"
 />
 </authentication-provider>
 

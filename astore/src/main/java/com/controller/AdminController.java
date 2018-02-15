@@ -36,7 +36,7 @@ public class AdminController {
 	@Autowired
 	SupplierDao supplierDao;
 	
-	@RequestMapping(value="/adding",method = RequestMethod.GET)
+	@RequestMapping(value="/admin/adding",method = RequestMethod.GET)
 	public ModelAndView adding(@ModelAttribute("list")Category category,@ModelAttribute("slist")Supplier supplier)
 	{   ModelAndView mv=new ModelAndView("adding");
 	    mv.addObject("list",productdao.retrieveCategory());
@@ -44,7 +44,14 @@ public class AdminController {
 	    return mv;
 		
 	}
-	@RequestMapping(value="/saveCat",method=RequestMethod.POST)
+	@RequestMapping(value="/userLogged",method = RequestMethod.GET)
+	public String userLogged(@RequestParam("email")  String email,@RequestParam("password") String password)
+	{   //ModelAndView mv=new ModelAndView("index");
+	    
+	    return "index";
+		
+	}
+	@RequestMapping(value="/admin/saveCat",method=RequestMethod.POST)
 	public ModelAndView saveCategoryData(@RequestParam("cid")  String cid,@RequestParam("cname") String cname)
 	{
 		ModelAndView mv=new ModelAndView();
@@ -73,7 +80,7 @@ public class AdminController {
 		mv.setViewName("adding");
 		return mv;
 	}
-	@RequestMapping(value="/saveProd",method=RequestMethod.POST)
+	@RequestMapping(value="/admin/saveProd",method=RequestMethod.POST)
 	public ModelAndView SaveProduct(HttpServletRequest req,@RequestParam("file")MultipartFile file)
 	{
 		ModelAndView mv=new ModelAndView();
@@ -111,5 +118,9 @@ public class AdminController {
 			return mv;
 			
 	}
+	
+	
+	
+	
 	}
 	

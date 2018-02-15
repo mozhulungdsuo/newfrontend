@@ -16,7 +16,7 @@
 
 
     
-    <form>
+    <form action="/userLogged">
   <div class="form-group">
       <label  for="email">Email:</label>
       <input type="text" class="form-control" id="email" placeholder="Enter email ID"  name="email">
