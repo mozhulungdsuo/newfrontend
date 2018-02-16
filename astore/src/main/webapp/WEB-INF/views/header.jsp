@@ -11,7 +11,7 @@
       <div class="collapse navbar-collapse" id="myNavbar">
    <ul class="nav navbar-nav">     
    <li><a href="">Home</a></li>
-   <li><a href="/admin/adding">Admin</a></li>
+   <li><a href="adding">Admin</a></li>
 
    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Admin List<span class="caret"></span></a>
         <ul class="dropdown-menu">
@@ -25,16 +25,11 @@
         <ul class="dropdown-menu">
         <c:forEach items="${list}" var="cat">
           <!-- <option value="${cat.cid}">${cat.cname}</option>-->
-          <li><a href="#">${cat.cname}</a></li>
+          <li><a href="productCustList?cid=${cat.cid}"  onclick="productCustList">${cat.cname} </a></li>
           </c:forEach>
         
         </ul>
-         <!-- <select name="cid" class="dropdown-menu" >
-            <option value="">Select</option>
-          <c:forEach items="${list}" var="cat">
-          <option value="${cat.cid}">${cat.cname}</option></c:forEach>
-          </select>
-        </li>-->
+    
      
          
        

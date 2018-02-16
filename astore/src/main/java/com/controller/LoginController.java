@@ -10,10 +10,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class LoginController {
-	@RequestMapping(value = "/login")
+	@RequestMapping(value = "hello")
 	  public String login()
 	  {
-		return "login";
+		return "productCustList";
 	  }
 	
 }
