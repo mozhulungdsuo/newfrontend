@@ -12,14 +12,13 @@
 
 <http auto-config="true">
 <intercept-url pattern="/webapp/resources/**"/>
-<intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
+<intercept-url pattern="/admin/**" access="ROLE_ADMIN"/>
 <intercept-url pattern="/login" access="permitAll"/>
 <form-login
 login-page="/login"
+default-target-url="/userLogged"
 username-parameter="email" 
 password-parameter="password" 
-authentication-success-forward-url="/userLogged"
-
 />
 <access-denied-handler error-page="/error"/>
 <logout logout-url="/logout" invalidate-session="true" logout-success-url="/"/>
