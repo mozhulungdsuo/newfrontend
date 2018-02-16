@@ -63,6 +63,11 @@ public class ProductDaoImpl implements ProductDao{
 		return session.get(Supplier.class,sid);
 
 	}
+	public Product getProductbyID(String pid) {
+		Session session=sessionFactory.openSession();
+		return session.get(Product.class,pid);
+
+	}
 
 
 

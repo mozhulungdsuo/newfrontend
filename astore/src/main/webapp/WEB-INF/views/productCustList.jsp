@@ -23,17 +23,16 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-      <c:forEach items="${items}" var="cat">
-        <td>${cat.pid}</td>
-        <td>${cat.pname}</td>
-        <td>Details</td>
-        </c:forEach>
-        
-      </tr>
       
+      <c:forEach items="${items}" var="cat">
+      <tr>
+        <td>${cat.pid}</td>
+        <td>${cat.pname}</td>       
+        <td><a href="productDetails?pid=${cat.pid}">Details</a></td>
+          </tr>
+        </c:forEach>           
     </tbody>
-  </table>
+  </table>  
 </div>
 
 </body>

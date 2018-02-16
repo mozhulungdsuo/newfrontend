@@ -10,6 +10,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.backend.dao.CategoryDao;
 import com.backend.dao.ProductDao;
 import com.backend.dao.SupplierDao;
+import com.backend.model.Product;
+import com.backend.model.Supplier;
 
 @Controller
 public class CategoryController {
@@ -26,6 +28,22 @@ public class CategoryController {
 		System.out.println(cid);
 		ModelAndView mv=new ModelAndView("productCustList");
 	    mv.addObject("items",categoryDao.retrieveProduct(cid));
+	    
+	    return mv;
+		
+	}
+	@RequestMapping(value="productDetails",method = RequestMethod.GET)
+	public ModelAndView productDetails(@RequestParam("pid") String pid)
+		{  
+		//String cid="88";
+		System.out.println(pid);
+		//Product product=new Product();
+		ModelAndView mv=new ModelAndView("productDetails");
+		Product product=productdao.getProductbyID(pid);
+	    mv.addObject("item",product);
+	    Supplier supplier=product.getSupplier();
+	    mv.addObject("sup",supplier);
+	    
 	    
 	    return mv;
 		
