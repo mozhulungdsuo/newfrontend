@@ -23,17 +23,29 @@
   
    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Category<span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="#"></a></li>
-          <li><a href="#"></a></li>
-          <li><a href="#"></a></li>
+        <c:forEach items="${list}" var="cat">
+          <!-- <option value="${cat.cid}">${cat.cname}</option>-->
+          <li><a href="#">${cat.cname}</a></li>
+          </c:forEach>
+        
         </ul>
-        </li>
+         <!-- <select name="cid" class="dropdown-menu" >
+            <option value="">Select</option>
+          <c:forEach items="${list}" var="cat">
+          <option value="${cat.cid}">${cat.cname}</option></c:forEach>
+          </select>
+        </li>-->
+     
+         
+       
+      
+  
         <li><a href="register">Register</a></li>
         <li><a href="login">Login</a>
    
    
     </ul> 
      </div>
-    </div>
+  
  </nav>  
  

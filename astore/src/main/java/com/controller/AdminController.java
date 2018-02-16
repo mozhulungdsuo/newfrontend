@@ -2,6 +2,7 @@ package com.controller;
 
 import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,8 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -46,11 +50,13 @@ public class AdminController {
 	    return mv;
 		
 	}
-	@RequestMapping(value="/userLogged")
-	public ModelAndView userlogged() {
-	ModelAndView model = new ModelAndView("index");
-	model.addObject("email","hello");
-     return model;
+	
+	@RequestMapping(value="/userLogged"/*, method = RequestMethod.GET*/)
+	public String userlogged(ModelMap model,Principal principal) {
+	
+	//String currentuser =principal.getName();
+	 model.addAttribute("currentuser", getPrincipal());
+     return "index";
 	}
 	@RequestMapping(value="/admin/saveCat",method=RequestMethod.POST)
 	public ModelAndView saveCategoryData(@RequestParam("cid")  String cid,@RequestParam("cname") String cname)
@@ -119,6 +125,23 @@ public class AdminController {
 			return mv;
 			
 	}
+	
+	
+	
+	
+	private String getPrincipal(){
+        
+		  String email = null;
+	        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+	 
+	        if (principal instanceof UserDetails) {
+	            email = ((UserDetails)principal).getUsername();
+	        } else {
+	            email = principal.toString();
+	        }
+	        return email;
+      
+    }
 	
 	
 	
