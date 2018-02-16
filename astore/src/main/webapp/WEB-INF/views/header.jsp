@@ -11,7 +11,7 @@
       <div class="collapse navbar-collapse" id="myNavbar">
    <ul class="nav navbar-nav">     
    <li><a href="">Home</a></li>
-   <li><a href="adding">Admin</a></li>
+   <li><a href="/admin/adding">Admin</a></li>
 
    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Admin List<span class="caret"></span></a>
         <ul class="dropdown-menu">

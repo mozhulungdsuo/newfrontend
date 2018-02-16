@@ -46,13 +46,11 @@ public class AdminController {
 	    return mv;
 		
 	}
-	@RequestMapping(value="/userLogged",method = RequestMethod.GET)
-	public String userLogged(@RequestParam("email")  String email,HttpSession session,HttpServletRequest request,Model model)
-	{   //ModelAndView mv=new ModelAndView("index");
-		session = request.getSession();
-		session.setAttribute("email",email);
-		return "index";
-		
+	@RequestMapping(value="/userLogged")
+	public ModelAndView userlogged() {
+	ModelAndView model = new ModelAndView("index");
+	model.addObject("email","hello");
+     return model;
 	}
 	@RequestMapping(value="/admin/saveCat",method=RequestMethod.POST)
 	public ModelAndView saveCategoryData(@RequestParam("cid")  String cid,@RequestParam("cname") String cname)
