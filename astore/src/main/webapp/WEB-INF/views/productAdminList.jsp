@@ -29,7 +29,7 @@
       <tr>
         <td>${cat.pid}</td>
         <td>${cat.pname}</td>       
-        <td><a href=" ">Delete</a></td>
+        <td><a href="updateProd?pid=${cat.pid}">Edit</a>/<a href="deleteProd?pid=${cat.pid}">Delete</a></td>
           </tr>
         </c:forEach>           
     </tbody>

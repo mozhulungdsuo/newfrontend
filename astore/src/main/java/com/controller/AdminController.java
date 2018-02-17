@@ -47,9 +47,20 @@ public class AdminController {
 		{  
 		   ModelAndView mv=new ModelAndView("productAdminList");
 		   mv.addObject("list",productdao.retrieveProducts());
+		   
 	      return mv;
 		
 	  }
+	@RequestMapping(value="updateProd",method=RequestMethod.GET)
+	public ModelAndView updateProd(@RequestParam("pid") String pid)
+	{   //int ppid=Integer.parseInt(pid);
+		ModelAndView mv=new ModelAndView("updateProd");
+	    mv.addObject("item",productdao.getProductbyID( pid));
+	    mv.addObject("list",productdao.retrieveCategory());
+	    mv.addObject("slist",productdao.retrieveSupplier());
+	    
+		return mv;
+	}
 	
 	@RequestMapping(value="/adding",method = RequestMethod.GET)
 	public ModelAndView adding(@ModelAttribute("list")Category category,@ModelAttribute("slist")Supplier supplier)
@@ -133,6 +144,43 @@ public class AdminController {
 		    mv.setViewName("adding");
 			return mv;
 			
+	}
+	@RequestMapping(value="/saveProd1",method=RequestMethod.POST)
+	public String saveProd1(HttpServletRequest req,@RequestParam("file")MultipartFile file)
+	{
+		
+		Product prod=new Product();
+		prod.setPid(req.getParameter("pid"));
+		System.out.println(req.getParameter("pid"));
+		prod.setPname(req.getParameter("pname"));
+		prod.setDescription(req.getParameter("description"));
+		prod.setPrice(req.getParameter("price"));
+		prod.setStock(req.getParameter("Stock"));
+		//prod.setCategory(req.getParameter(""));
+		String pid=req.getParameter("pid");
+		String cid=req.getParameter("cid");
+		String sid=req.getParameter("sid");
+		System.out.println(cid);
+		prod.setCategory(productdao.CgetByID(cid));
+		prod.setSupplier(productdao.SgetByID(sid));
+		
+		
+		String filepath=req.getSession().getServletContext().getRealPath("/");
+		String filename=file.getOriginalFilename();
+		System.out.println(filename);
+		prod.setImgname(filename);
+		productdao.insertProduct(prod);
+		try {
+			byte [] imagebyte=file.getBytes();
+			BufferedOutputStream fos=new BufferedOutputStream(new FileOutputStream(filepath+"/resources/"+filename));
+			fos.write(imagebyte);
+			fos.close();
+			
+		}catch(Exception e) {
+			System.out.println("error");
+			
+		}
+		  return "redirect:updateProd?pid";
 	}
 	
 	
