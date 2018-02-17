@@ -68,6 +68,10 @@ public class ProductDaoImpl implements ProductDao{
 		return session.get(Product.class,pid);
 
 	}
+	public List<Product> retrieveProducts() {
+		Session session=sessionFactory.openSession();
+		return session.createQuery("FROM Product" ,Product.class).getResultList();
+	}
 
 
 

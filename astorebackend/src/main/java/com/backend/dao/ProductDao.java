@@ -14,7 +14,7 @@ public interface ProductDao {
 	public List<Supplier> retrieveSupplier();
 	public Category CgetByID(String cid);
 	public Supplier SgetByID(String sid);
-	
+	public List<Product> retrieveProducts();
 	public Product getProductbyID(String pid);
 	
 }

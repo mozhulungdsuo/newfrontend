@@ -13,15 +13,9 @@
    <li><a href="">Home</a></li>
    <li><a href="adding">Admin</a></li>
 
-   <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Admin List<span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <li><a href="#"></a></li>
-          <li><a href="#"></a></li>
-          <li><a href="#"></a></li>
-        </ul>
-        </li>
+   <li><a  href="productAdminList">Admin List</a></li>
   
-   <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Category<span class="caret"></span></a>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Category<span class="caret"></span></a>
         <ul class="dropdown-menu">
         <c:forEach items="${list}" var="cat">
           <!-- <option value="${cat.cid}">${cat.cname}</option>-->
@@ -29,7 +23,7 @@
           </c:forEach>
         
         </ul>
-    
+    </li>
      
          
        

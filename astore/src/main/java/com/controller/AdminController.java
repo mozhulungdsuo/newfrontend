@@ -42,6 +42,15 @@ public class AdminController {
 	@Autowired
 	SupplierDao supplierDao;
 	
+	@RequestMapping(value="productAdminList",method = RequestMethod.GET)
+	public ModelAndView productAdminList()
+		{  
+		   ModelAndView mv=new ModelAndView("productAdminList");
+		   mv.addObject("list",productdao.retrieveProducts());
+	      return mv;
+		
+	  }
+	
 	@RequestMapping(value="/adding",method = RequestMethod.GET)
 	public ModelAndView adding(@ModelAttribute("list")Category category,@ModelAttribute("slist")Supplier supplier)
 	{   ModelAndView mv=new ModelAndView("adding");
