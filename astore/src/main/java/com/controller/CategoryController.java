@@ -37,9 +37,10 @@ public class CategoryController {
 		{  
 		//String cid="88";
 		System.out.println(pid);
+		int ppid=Integer.parseInt(pid);
 		//Product product=new Product();
 		ModelAndView mv=new ModelAndView("productDetails");
-		Product product=productdao.getProductbyID(pid);
+		Product product=productdao.getProductbyID(ppid);
 	    mv.addObject("item",product);
 	    Supplier supplier=product.getSupplier();
 	    mv.addObject("sup",supplier);

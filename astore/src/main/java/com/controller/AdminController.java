@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.backend.dao.CategoryDao;
 import com.backend.dao.ProductDao;
@@ -54,8 +55,11 @@ public class AdminController {
 	@RequestMapping(value="updateProd",method=RequestMethod.GET)
 	public ModelAndView updateProd(@RequestParam("pid") String pid)
 	{   //int ppid=Integer.parseInt(pid);
+		//Product product=productdao.getProductbyID(pid);
+		//product.setDescription(description);
 		ModelAndView mv=new ModelAndView("updateProd");
-	    mv.addObject("item",productdao.getProductbyID(pid));
+		int ppid=Integer.parseInt(pid);
+	    mv.addObject("item",productdao.getProductbyID(ppid));
 	    mv.addObject("list",productdao.retrieveCategory());
 	    mv.addObject("slist",productdao.retrieveSupplier());
 	    
@@ -63,8 +67,8 @@ public class AdminController {
 	}
 	@RequestMapping(value="deleteProd",method=RequestMethod.GET)
 	public String deleteProd(@RequestParam("pid") String pid)
-	{   //int ppid=Integer.parseInt(pid);
-		Product product=productdao.getProductbyID(pid);
+	{   int ppid=Integer.parseInt(pid);
+		Product product=productdao.getProductbyID(ppid);
 		productdao.deleteProduct(product);
 	    
 		return "redirect:productAdminList";
@@ -120,7 +124,8 @@ public class AdminController {
 	{
 		ModelAndView mv=new ModelAndView();
 		Product prod=new Product();
-		prod.setPid(req.getParameter("pid"));
+		int ppid=Integer.parseInt(req.getParameter("pid"));
+		prod.setPid(ppid);
 		System.out.println(req.getParameter("pid"));
 		prod.setPname(req.getParameter("pname"));
 		prod.setDescription(req.getParameter("description"));
@@ -153,12 +158,12 @@ public class AdminController {
 			return mv;
 			
 	}
-	@RequestMapping(value="/saveProd1",method=RequestMethod.POST)
+	@RequestMapping(value="saveProd1",method=RequestMethod.POST)
 	public String saveProd1(HttpServletRequest req,@RequestParam("file")MultipartFile file)
 	{
-		
-		Product prod=new Product();
-		prod.setPid(req.getParameter("pid"));
+		int ppid=Integer.parseInt(req.getParameter("pid"));
+		Product prod=productdao.getProductbyID(ppid);
+		//prod.setPid(req.getParameter("pid"));
 		System.out.println(req.getParameter("pid"));
 		prod.setPname(req.getParameter("pname"));
 		prod.setDescription(req.getParameter("description"));
@@ -188,7 +193,15 @@ public class AdminController {
 			System.out.println("error");
 			
 		}
-		  return "redirect:updateProd?pid";
+		//redirectAttributes.addFlashAttribute("pid", pid);
+		//ModelAndView mv=new ModelAndView("updateProd");
+		//int ppid=Integer.parseInt(pid);
+	   //mv.addObject("item",productdao.getProductbyID(ppid));
+	   // mv.addObject("list",productdao.retrieveCategory());
+	    ////mv.addObject("slist",productdao.retrieveSupplier());
+	    
+		//return mv;
+		  return "redirect:productAdminList";
 	}
 	
 	

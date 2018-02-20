@@ -17,7 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class Product {
 @Id
 //@GeneratedValue
-private String pid;
+private int pid;
 private String pname;
 private String description;
 private String price;
@@ -33,11 +33,11 @@ private Supplier supplier;
 @Transient
 MultipartFile pimage;
 private String imgname;
-public String getPid() {
+public int getPid() {
 	return pid;
 }
-public void setPid(String string) {
-	this.pid = string;
+public void setPid(int pid) {
+	this.pid = pid;
 }
 public String getPname() {
 	return pname;
@@ -87,6 +87,7 @@ public String getImgname() {
 public void setImgname(String imgname) {
 	this.imgname = imgname;
 }
+
 
 
 }
