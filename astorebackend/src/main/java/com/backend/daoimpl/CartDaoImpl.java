@@ -27,20 +27,35 @@ public class CartDaoImpl implements CartDao{
 	public CartDaoImpl(SessionFactory sessionFactory) {
 		this.sessionFactory=sessionFactory;
 	}
-	public Cart getCartById(String pid, String userEmail) {
+	public void deleteProdCart(Cart cart)
+	{
+		Session session=sessionFactory.openSession();
+		session.beginTransaction();
+		//Query query = session.createQuery("delete Cart where cartproductid=:pid and cartid=:cartid");
+		//query.setParameter("pid", pid);
+		//query.setParameter("cartid",cartid);		 
+		//query.executeUpdate();
+        session.delete(cart);
+        session.getTransaction().commit();
+        session.close();
+	}
+	
+	public Cart getCartById(int pid, String userEmail) {
 	Session session=sessionFactory.openSession();
 	Cart cr=null;
 	session.beginTransaction();
-	cr=(Cart)session.createQuery("from Cart where cartUserDetails=:email and cartProductID=:crid").setString("email",userEmail).setString("crid",pid).uniqueResult();
-	
+	cr=(Cart)session.createQuery("from Cart where cartUserDetails=:email and cartProductID=:crid").setString("email",userEmail).setInteger("crid",pid).uniqueResult();
+	session.close();
 	return cr;
 	}
+	
 	public void insertCart(Cart cart) {
 		Session session=sessionFactory.openSession();
 		session.beginTransaction();
 		//session.presist();
 		session.saveOrUpdate(cart);
 		session.getTransaction().commit();
+		session.close();
 		
 	}
 	public List<Cart> retrieveCart(int cid) {
@@ -48,6 +63,7 @@ public class CartDaoImpl implements CartDao{
 		Query<Cart> query = session.createQuery("from Cart where cartid = :code",Cart.class);
 		query.setParameter("code", cid);
 		List<Cart> pl=query.getResultList();
+		session.close();
 		return pl;
 	
 	}

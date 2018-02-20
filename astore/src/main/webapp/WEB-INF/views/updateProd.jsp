@@ -17,6 +17,7 @@
 <body>
 
      <%@include file="/WEB-INF/views/header.jsp"%>
+     <div class="container">
       <form method="post" action="saveProd1" enctype="multipart/form-data">
     <div class="form-group">
       <label for="pid">Product ID:</label>
@@ -65,7 +66,7 @@
     </div>
     <button type="submit" value="saveProd1" class="btn btn-default">Submit</button>
   </form>
-
+</div>
    
 
 </body>

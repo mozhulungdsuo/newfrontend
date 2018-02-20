@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,6 +20,7 @@ import com.backend.dao.ProductDao;
 import com.backend.dao.SupplierDao;
 import com.backend.dao.UserDao;
 import com.backend.model.Cart;
+import com.backend.model.Product;
 import com.backend.model.User;
 
 @Controller
@@ -37,6 +39,25 @@ CartDao cartdao;
 @Autowired
 OrderDao orderdao;
 
+@RequestMapping(value="checkOut")
+public ModelAndView checkOut()
+{
+	return null;
+}
+@RequestMapping(value="deletePCart",method=RequestMethod.GET)
+public ModelAndView deleteProd(@RequestParam("pid") String pid,HttpServletRequest request)
+{   
+	ModelAndView mv=new ModelAndView("cart");
+	int ppid=Integer.parseInt(pid);
+	//int ccartid=Integer.parseInt(cartid);
+	Principal principal=request.getUserPrincipal();
+	String email=principal.getName();
+
+	Cart cr=cartdao.getCartById(ppid, email);
+	cartdao.deleteProdCart(cr);
+	return mv;
+}
+
 @RequestMapping(value="addToCart",method=RequestMethod.GET)
 public ModelAndView addToCart(HttpServletRequest request)
 {   
@@ -48,6 +69,7 @@ public ModelAndView addToCart(HttpServletRequest request)
 	//try {
 		String pid=request.getParameter("pid");
 		System.out.println(pid);
+		int ppid=Integer.parseInt(pid);
 		System.out.println(request.getParameter("price"));
 		Double price=Double.parseDouble(request.getParameter("price"));
 		System.out.println(price);
@@ -55,7 +77,7 @@ public ModelAndView addToCart(HttpServletRequest request)
 				System.out.println(quantity);
 		String productname=request.getParameter("pname");
 		String imgname=request.getParameter("imgname");
-		Cart cartexist=cartdao.getCartById(pid,email);
+		Cart cartexist=cartdao.getCartById(ppid,email);
 		
 		if(cartexist==null)
 		{
@@ -70,7 +92,11 @@ public ModelAndView addToCart(HttpServletRequest request)
 			//cartdao.retrieveCart(cm.getCartid());
 			mv.addObject("carts",cartdao.retrieveCart(cm.getCartid()));
 		}
-	
+		else {
+			//give some alert or maybe directly go checkout
+			//add same object to db???
+		}
+			
 	
 	
 	//}finally {

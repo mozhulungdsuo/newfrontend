@@ -34,6 +34,9 @@
         </c:forEach>           
     </tbody>
   </table>  
+  <a href="${pageContext.request.contextPath}/" class="btn btn-info" role="button">Continue Shopping</a>
+<input type="submit" class="btn btn-info" value="Check Out">
+
 </div>
 
 </body>

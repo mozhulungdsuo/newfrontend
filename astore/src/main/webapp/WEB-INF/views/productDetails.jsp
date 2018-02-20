@@ -14,6 +14,7 @@
 </head>
 <body>
 <%@include file="/WEB-INF/views/header.jsp"%>
+<div class="container">
 <form action="addToCart" method="get">
 <table class="table">
     <tr>
@@ -48,6 +49,6 @@
   </table>
 <button type="submit" action="addToCart">Add to cart</button>
 </form>
-
+</div>
 </body>
 </html>
