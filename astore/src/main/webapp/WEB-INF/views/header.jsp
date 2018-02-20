@@ -23,8 +23,7 @@
           </c:forEach>
         
         </ul>
-    </li>
-     
+    </li>  
          
        
       
@@ -41,7 +40,7 @@
 		</c:if>
     </ul> 
      </div>
-  
+  </div>
  </nav>  
  
 

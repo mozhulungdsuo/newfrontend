@@ -1,9 +1,12 @@
 package com.backend.daoimpl;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
@@ -39,6 +42,14 @@ public class CartDaoImpl implements CartDao{
 		session.saveOrUpdate(cart);
 		session.getTransaction().commit();
 		
+	}
+	public List<Cart> retrieveCart(int cid) {
+		Session session=sessionFactory.openSession();
+		Query<Cart> query = session.createQuery("from Cart where cartid = :code",Cart.class);
+		query.setParameter("code", cid);
+		List<Cart> pl=query.getResultList();
+		return pl;
+	
 	}
 	
 }

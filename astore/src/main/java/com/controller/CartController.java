@@ -45,7 +45,7 @@ public ModelAndView addToCart(HttpServletRequest request)
 	Principal principal=request.getUserPrincipal();
 	String email=principal.getName();
 	System.out.println(email);
-	try {
+	//try {
 		String pid=request.getParameter("pid");
 		System.out.println(pid);
 		System.out.println(request.getParameter("price"));
@@ -67,15 +67,16 @@ public ModelAndView addToCart(HttpServletRequest request)
 			cm.setCartprice(price*quantity);
 			cm.setCartUserDetails(userdao.getUserById(email));
 			cartdao.insertCart(cm);
-			mv.addObject("cart",cartexist);
+			//cartdao.retrieveCart(cm.getCartid());
+			mv.addObject("carts",cartdao.retrieveCart(cm.getCartid()));
 		}
 	
 	
 	
-	}finally {
+	//}finally {
 		
-	}
-	
+	//}
+		
 	return mv;
 	
 }

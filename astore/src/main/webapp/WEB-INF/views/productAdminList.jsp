@@ -26,7 +26,7 @@
     </thead>
     <tbody>
       
-      <c:forEach items="${list}" var="cat">
+      <c:forEach items="${abc}" var="cat">
       <tr>
         <td>${cat.pid}</td>
         <td>${cat.pname}</td>       

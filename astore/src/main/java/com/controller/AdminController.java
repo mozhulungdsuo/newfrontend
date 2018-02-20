@@ -46,7 +46,7 @@ public class AdminController {
 	public ModelAndView productAdminList()
 		{  
 		   ModelAndView mv=new ModelAndView("productAdminList");
-		   mv.addObject("list",productdao.retrieveProducts());
+		   mv.addObject("abc",productdao.retrieveProducts());
 		   
 	      return mv;
 		
