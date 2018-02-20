@@ -16,7 +16,7 @@
 </head>
 <body>
 
-     
+     <%@include file="/WEB-INF/views/header.jsp"%>
       <form method="post" action="saveProd1" enctype="multipart/form-data">
     <div class="form-group">
       <label for="pid">Product ID:</label>

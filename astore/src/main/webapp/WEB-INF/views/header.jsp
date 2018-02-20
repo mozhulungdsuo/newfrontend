@@ -19,7 +19,7 @@
         <ul class="dropdown-menu">
         <c:forEach items="${list}" var="cat">
           <!-- <option value="${cat.cid}">${cat.cname}</option>-->
-          <li><a href="productCustList?cid=${cat.cid}"  onclick="productCustList">${cat.cname} </a></li>
+          <li><a href="${pageContext.request.contextPath}/productCustList?cid=${cat.cid}">${cat.cname} </a></li>
           </c:forEach>
         
         </ul>
@@ -30,11 +30,19 @@
       
   
         <li><a href="register">Register</a></li>
-        <li><a href="login">Login</a>
-   
-   
+        <li><a href="login">Login</a></li>
+    <c:if test="${pageContext.request.userPrincipal.name != null}">
+		<c:out value="${SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString()}"></c:out>
+		<h6 style="color:white;" align="right">
+			Welcome : ${pageContext.request.userPrincipal.name} 
+			 <a href="<c:url value="/logout" />">Logout</a>
+			
+		</h6>
+		</c:if>
     </ul> 
      </div>
   
  </nav>  
  
+
+     

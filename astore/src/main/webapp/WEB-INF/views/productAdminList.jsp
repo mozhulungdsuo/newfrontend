@@ -14,6 +14,7 @@
 <title>Admin products list</title>
 </head>
 <body>
+<%@include file="/WEB-INF/views/header.jsp"%>
 <div class="container">            
   <table class="table">
     <thead>

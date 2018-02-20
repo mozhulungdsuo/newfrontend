@@ -14,6 +14,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
+<%@include file="/WEB-INF/views/header.jsp"%>
 
 
 <div class="container">

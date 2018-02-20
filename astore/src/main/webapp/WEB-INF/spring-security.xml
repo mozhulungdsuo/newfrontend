@@ -11,18 +11,18 @@
 		http://www.springframework.org/schema/context/spring-context.xsd">
 
 <security:http auto-config="true" >
-<!--<security:intercept-url pattern="/webapp/resources/**"/>-->
-<!-- <security:intercept-url pattern="/admin/**" access="ROLE_ADMIN"/>-->
-<!-- <security:intercept-url pattern="/login" access="permitAll"/>-->
+<security:intercept-url pattern="/webapp/resources/**"/>
+ <security:intercept-url pattern="/admin/**" access="ROLE_ADMIN"/>
+<security:intercept-url pattern="/login" access="permitAll"/>
 
 <security:form-login
 
 username-parameter="email" 
 password-parameter="password" 
 authentication-success-forward-url="/userLogged"
-
 />
 <security:access-denied-handler error-page=""/>
+ <security:csrf disabled="true" />
 <security:logout logout-url="/logout" invalidate-session="true" logout-success-url="/"/>
 </security:http>
 <security:authentication-manager>

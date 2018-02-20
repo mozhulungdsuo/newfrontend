@@ -15,7 +15,7 @@
 <body>
 
 
-
+<%@include file="/WEB-INF/views/header.jsp"%>
     
     <form method="post" action="saveCat" modelAttribute="user" >
   <div class="form-group">

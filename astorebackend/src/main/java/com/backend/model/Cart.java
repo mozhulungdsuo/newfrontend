@@ -17,11 +17,11 @@ public class Cart {
 	@Id
 	@GeneratedValue
 	private int cartid;
-	private int cartProductID;
+	private String cartProductID;
 	@OneToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="email")
 	private User cartUserDetails;
-	private Double cartprice;
+	private double cartprice;
 	private int cartQuantity;
 	
 	private String cartImage;
@@ -32,11 +32,11 @@ public class Cart {
 	public void setCartid(int cartid) {
 		this.cartid = cartid;
 	}
-	public int getCartProductID() {
+	public String getCartProductID() {
 		return cartProductID;
 	}
-	public void setCartProductID(int cartProductID) {
-		this.cartProductID = cartProductID;
+	public void setCartProductID(String pid) {
+		this.cartProductID = pid;
 	}
 	public User getCartUserDetails() {
 		return cartUserDetails;
@@ -44,11 +44,11 @@ public class Cart {
 	public void setCartUserDetails(User cartUserDetails) {
 		this.cartUserDetails = cartUserDetails;
 	}
-	public Double getCartprice() {
+	public double getCartprice() {
 		return cartprice;
 	}
-	public void setCartprice(Double cartprice) {
-		this.cartprice = cartprice;
+	public void setCartprice(double d) {
+		this.cartprice = d;
 	}
 	public int getCartQuantity() {
 		return cartQuantity;

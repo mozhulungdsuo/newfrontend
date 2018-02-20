@@ -55,11 +55,19 @@ public class AdminController {
 	public ModelAndView updateProd(@RequestParam("pid") String pid)
 	{   //int ppid=Integer.parseInt(pid);
 		ModelAndView mv=new ModelAndView("updateProd");
-	    mv.addObject("item",productdao.getProductbyID( pid));
+	    mv.addObject("item",productdao.getProductbyID(pid));
 	    mv.addObject("list",productdao.retrieveCategory());
 	    mv.addObject("slist",productdao.retrieveSupplier());
 	    
 		return mv;
+	}
+	@RequestMapping(value="deleteProd",method=RequestMethod.GET)
+	public String deleteProd(@RequestParam("pid") String pid)
+	{   //int ppid=Integer.parseInt(pid);
+		Product product=productdao.getProductbyID(pid);
+		productdao.deleteProduct(product);
+	    
+		return "redirect:productAdminList";
 	}
 	
 	@RequestMapping(value="/adding",method = RequestMethod.GET)
@@ -78,7 +86,7 @@ public class AdminController {
 	 model.addAttribute("currentuser", getPrincipal());
      return "index";
 	}
-	@RequestMapping(value="/admin/saveCat",method=RequestMethod.POST)
+	@RequestMapping(value="/saveCat",method=RequestMethod.POST)
 	public ModelAndView saveCategoryData(@RequestParam("cid")  String cid,@RequestParam("cname") String cname)
 	{
 		ModelAndView mv=new ModelAndView();
@@ -155,7 +163,7 @@ public class AdminController {
 		prod.setPname(req.getParameter("pname"));
 		prod.setDescription(req.getParameter("description"));
 		prod.setPrice(req.getParameter("price"));
-		prod.setStock(req.getParameter("Stock"));
+		prod.setStock(req.getParameter("stock"));
 		//prod.setCategory(req.getParameter(""));
 		String pid=req.getParameter("pid");
 		String cid=req.getParameter("cid");
@@ -200,7 +208,19 @@ public class AdminController {
       
     }
 	
-	
+	@RequestMapping("/logout")
+	public String logout()
+	{
+		return "redirect:/";
+	}
+	@RequestMapping("/accessDenied")
+	public String Error()
+	{
+		System.out.println("enter in error page");
+		return "error";
+	}
+
+
 	
 	
 	}

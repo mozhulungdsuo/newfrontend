@@ -33,7 +33,7 @@ public class ProductDaoImpl implements ProductDao{
 		Session session=sessionFactory.openSession();
 		session.beginTransaction();
 		//session.presist();
-		session.save(product);
+		session.saveOrUpdate(product);
 		session.getTransaction().commit();
 		
 	}

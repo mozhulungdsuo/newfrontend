@@ -1,5 +1,8 @@
 package com.backend.dao;
 
-public interface CartDao {
+import com.backend.model.Cart;
 
+public interface CartDao {
+	public void insertCart(Cart cart);
+public Cart getCartById(String pid,String email);
 }

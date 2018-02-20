@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import com.backend.dao.UserDao;
-
+import com.backend.model.Supplier;
 import com.backend.model.User;
 @Repository
 @Service
@@ -41,6 +41,12 @@ public class UserDaoImpl implements UserDao {
 		session.beginTransaction();
 		session.delete(user);
 		session.getTransaction().commit();
+	}
+	public User getUserById(String email)
+	{
+		Session session=sessionFactory.openSession();
+		return session.get(User.class,email);
+		
 	}
 	
 }

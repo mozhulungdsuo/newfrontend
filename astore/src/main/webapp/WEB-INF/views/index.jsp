@@ -17,8 +17,8 @@
 </head>
 <body bgcolor="blue">
  	<%@include file="/WEB-INF/views/header.jsp"%>
-  </div>
-    ${currentuser}
+
+  
     <a href="hello" onclick="hello">Click</a>
 </body>
 </html>
