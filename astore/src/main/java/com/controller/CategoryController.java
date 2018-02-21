@@ -21,7 +21,7 @@ public class CategoryController {
 	ProductDao productdao;
 	@Autowired
 	SupplierDao supplierDao;
-	@RequestMapping(value="productCustList",method = RequestMethod.GET)
+	@RequestMapping(value="/productCustList",method = RequestMethod.GET)
 	public ModelAndView productCustList(@RequestParam("cid") String cid)
 		{  
 		//String cid="88";
@@ -32,7 +32,7 @@ public class CategoryController {
 	    return mv;
 		
 	}
-	@RequestMapping(value="productDetails",method = RequestMethod.GET)
+	@RequestMapping(value="/productDetails",method = RequestMethod.GET)
 	public ModelAndView productDetails(@RequestParam("pid") String pid)
 		{  
 		//String cid="88";

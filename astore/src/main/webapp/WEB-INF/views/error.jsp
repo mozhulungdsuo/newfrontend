@@ -10,31 +10,10 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<title>Product</title>
+<title>Error</title>
 </head>
 <body>
 <%@include file="/WEB-INF/views/header.jsp"%>
-<div class="container">            
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Product ID</th>
-        <th>Product Name</th>
-        <th>Action</th>        
-      </tr>
-    </thead>
-    <tbody>
-      
-      <c:forEach items="${items}" var="cat">
-      <tr>
-        <td>${cat.pid}</td>
-        <td>${cat.pname}</td>       
-        <td><a href="${pageContext.request.contextPath}/productDetails?pid=${cat.pid}">Details</a></td>
-          </tr>
-        </c:forEach>           
-    </tbody>
-  </table>  
-</div>
-
+Invalid access!!! Contact Admin!!!
 </body>
 </html>

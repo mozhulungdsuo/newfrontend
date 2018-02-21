@@ -19,6 +19,6 @@
  	<%@include file="/WEB-INF/views/header.jsp"%>
 
   
-    <a href="hello" onclick="hello">Click</a>
+   
 </body>
 </html>

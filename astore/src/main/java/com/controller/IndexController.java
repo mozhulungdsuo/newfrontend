@@ -33,7 +33,7 @@ public class IndexController {
 	
 	@Autowired
 	ProductDao productdao;
-	  @RequestMapping(value = "/register", method = RequestMethod.GET)
+	  @RequestMapping(value = "/admin/register", method = RequestMethod.GET)
 	  public ModelAndView showRegister(HttpServletRequest request, HttpServletResponse response) {
 	    ModelAndView mav = new ModelAndView("register");
 	    mav.addObject("user", new User());
@@ -47,7 +47,7 @@ public class IndexController {
 	  	ModelAndView mv=new ModelAndView();
 	  	
 	  	user.setRole("ROLE_USER");
-	  	user.setEnabled(false);
+	  	user.setEnabled(true);
 	  	userDao.insertUser(user);
 	  	mv.setViewName("index");
 	  	return mv;
@@ -57,6 +57,13 @@ public class IndexController {
 
 
 @RequestMapping(value="/",method = RequestMethod.GET)
+public ModelAndView root(@ModelAttribute("list")Category category)
+{   ModelAndView mv=new ModelAndView("index");
+     mv.addObject("list",productdao.retrieveCategory());
+	
+	return mv;
+}
+@RequestMapping(value="index",method = RequestMethod.GET)
 public ModelAndView index(@ModelAttribute("list")Category category)
 {   ModelAndView mv=new ModelAndView("index");
      mv.addObject("list",productdao.retrieveCategory());

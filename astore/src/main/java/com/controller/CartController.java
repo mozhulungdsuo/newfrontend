@@ -40,6 +40,21 @@ UserDao userdao;
 CartDao cartdao;
 @Autowired
 OrderDao orderdao;
+@RequestMapping(value="ack")
+public String ack()
+{
+	return "ack";
+}
+@RequestMapping(value="goToCart")
+public ModelAndView goToCart(HttpServletRequest request)
+{  
+	ModelAndView mv=new ModelAndView("cart");
+	Principal principal=request.getUserPrincipal();
+	String email=principal.getName();
+	mv.addObject("carts",cartdao.findCartByEmailId(email));
+	return mv;
+}
+
 @RequestMapping(value="orderProcess",method=RequestMethod.POST)
 public ModelAndView orderProcess(HttpServletRequest request)
 {
@@ -54,7 +69,9 @@ public ModelAndView orderProcess(HttpServletRequest request)
     order.setTotal(total);
     order.setPayment(payment);
     orderdao.insert(order);
-    mv.addObject("oderdetails",user);
+    mv.addObject("carts",cartdao.findCartByEmailId(userMail));
+    mv.addObject("orderdetails",order);
+    mv.addObject("userdetails",user);
     return mv;
 	
 	

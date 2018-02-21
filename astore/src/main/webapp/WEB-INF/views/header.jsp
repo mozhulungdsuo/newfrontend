@@ -10,10 +10,10 @@
       </div>        
       <div class="collapse navbar-collapse" id="myNavbar">
    <ul class="nav navbar-nav">     
-   <li><a href="">Home</a></li>
-   <li><a href="adding">Admin</a></li>
+   <li><a href="index">Home</a></li>
+   <li><a href="${pageContext.request.contextPath}/admin/adding">Admin</a></li>
 
-   <li><a  href="productAdminList">Admin List</a></li>
+   <li><a  href="${pageContext.request.contextPath}/admin/productAdminList">Admin List</a></li>
   
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Category<span class="caret"></span></a>
         <ul class="dropdown-menu">
@@ -24,6 +24,11 @@
         
         </ul>
     </li>  
+    <li><c:if test="${pageContext.request.userPrincipal.name != null}">
+			 <a href="goToCart">My Cart</a>
+			
+		
+		</c:if> </li>
          
        
       
@@ -38,6 +43,7 @@
 			
 		</h6>
 		</c:if>
+		
     </ul> 
      </div>
   </div>

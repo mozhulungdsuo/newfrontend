@@ -30,7 +30,7 @@
    
     <div id="supplier" class="tab-pane fade in active">
     
-    <form method="post" action="saveSup">
+    <form method="post" action="${pageContext.request.contextPath}/saveSup">
     <div class="form-group">
       <label  for="sid">Supplier ID:</label>
       <input type="text" class="form-control" id="sid" placeholder="Enter Supplier ID"  name="sid">
@@ -47,7 +47,7 @@
    
    
     <div id="category" class="tab-pane fade">
-     <form method="post" action="saveCat" >
+     <form method="post" action="${pageContext.request.contextPath}/saveCat" >
     <div class="form-group">
       <label  for="cid">Category ID:</label>
       <input type="text" class="form-control" id="cid" placeholder="Enter Category ID"  name="cid">
@@ -65,7 +65,7 @@
     
     <div id="product" class="tab-pane fade">
      
-      <form method="post" action="saveProd" enctype="multipart/form-data">
+      <form method="post" action="${pageContext.request.contextPath}/saveProd" enctype="multipart/form-data">
     <div class="form-group">
       <label for="pid">Product ID:</label>
       <input type="text" class="form-control" id="pid" placeholder="Enter product ID" name="pid">
@@ -109,7 +109,7 @@
       </div>
     <div class="form-group">
       <label for="file" class="col-sm-2 control-label">Upload Image:</label>
-      <input type="file" class="form-control" id="file"  name="file" accept="image/*">
+      <input type="file" class="form-control-file" id="file" path="file" name="file" >
     </div>
     <button type="submit" value="saveProd" class="btn btn-default">Submit</button>
   </form>

@@ -6,22 +6,20 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<title>Edit Product</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<title>Edit products</title>
 </head>
 <body>
-
-     <%@include file="/WEB-INF/views/header.jsp"%>
+<%@include file="/WEB-INF/views/header.jsp"%>
      <div class="container">
-      <form method="post" action="saveProd1" enctype="multipart/form-data">
+      <form method="post" action="${pageContext.request.contextPath}/saveProd1" enctype="multipart/form-data">
     <div class="form-group">
       <label for="pid">Product ID:</label>
-      <input type="text" class="form-control" id="pid"  name="pid" value="${item.pid}">
+      <input type="text" class="form-control" id="pid"  name="pid" value="${item.pid}"  readonly="readonly">
     </div>
     <div class="form-group">
       <label for="pname">Product Name:</label>
@@ -62,7 +60,7 @@
       </div>
     <div class="form-group">
       <label for="file" class="col-sm-2 control-label">Upload Image:</label>
-      <input type="file" class="form-control" id="file"  name="file" accept="image/*">
+      <input type="file" class="form-control" id="file"  name="file"  path="file" >
     </div>
     <button type="submit" value="saveProd1" class="btn btn-default">Submit</button>
   </form>

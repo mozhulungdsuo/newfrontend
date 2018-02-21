@@ -43,7 +43,7 @@ public class AdminController {
 	@Autowired
 	SupplierDao supplierDao;
 	
-	@RequestMapping(value="productAdminList",method = RequestMethod.GET)
+	@RequestMapping(value="/admin/productAdminList",method = RequestMethod.GET)
 	public ModelAndView productAdminList()
 		{  
 		   ModelAndView mv=new ModelAndView("productAdminList");
@@ -52,7 +52,7 @@ public class AdminController {
 	      return mv;
 		
 	  }
-	@RequestMapping(value="updateProd",method=RequestMethod.GET)
+	@RequestMapping(value="/updateProd",method=RequestMethod.GET)
 	public ModelAndView updateProd(@RequestParam("pid") String pid)
 	{   //int ppid=Integer.parseInt(pid);
 		//Product product=productdao.getProductbyID(pid);
@@ -65,16 +65,19 @@ public class AdminController {
 	    
 		return mv;
 	}
-	@RequestMapping(value="deleteProd",method=RequestMethod.GET)
-	public String deleteProd(@RequestParam("pid") String pid)
+	@RequestMapping(value="/deleteProd",method=RequestMethod.GET)
+	public ModelAndView deleteProd(@RequestParam("pid") String pid)
 	{   int ppid=Integer.parseInt(pid);
 		Product product=productdao.getProductbyID(ppid);
 		productdao.deleteProduct(product);
 	    
-		return "redirect:productAdminList";
+		   ModelAndView mv=new ModelAndView("productAdminList");
+		   mv.addObject("abc",productdao.retrieveProducts());
+		   
+	      return mv;
 	}
 	
-	@RequestMapping(value="/adding",method = RequestMethod.GET)
+	@RequestMapping(value="/admin/adding",method = RequestMethod.GET)
 	public ModelAndView adding(@ModelAttribute("list")Category category,@ModelAttribute("slist")Supplier supplier)
 	{   ModelAndView mv=new ModelAndView("adding");
 	    mv.addObject("list",productdao.retrieveCategory());
@@ -83,13 +86,14 @@ public class AdminController {
 		
 	}
 	
-	@RequestMapping(value="/userLogged"/*, method = RequestMethod.GET*/)
+	/*@RequestMapping(value="/userLogged", method = RequestMethod.GET)
 	public String userlogged(ModelMap model,Principal principal) {
 	
 	//String currentuser =principal.getName();
 	 model.addAttribute("currentuser", getPrincipal());
      return "index";
 	}
+	*/
 	@RequestMapping(value="/saveCat",method=RequestMethod.POST)
 	public ModelAndView saveCategoryData(@RequestParam("cid")  String cid,@RequestParam("cname") String cname)
 	{
@@ -143,10 +147,12 @@ public class AdminController {
 		String filename=file.getOriginalFilename();
 		System.out.println(filename);
 		prod.setImgname(filename);
+		System.out.println(filepath+filename);
 		productdao.insertProduct(prod);
 		try {
 			byte [] imagebyte=file.getBytes();
-			BufferedOutputStream fos=new BufferedOutputStream(new FileOutputStream(filepath+"/resources/"+filename));
+			BufferedOutputStream fos=new BufferedOutputStream(new FileOutputStream(filepath+"/resources/images"+filename));
+			System.out.println(filepath+filename);
 			fos.write(imagebyte);
 			fos.close();
 			
@@ -158,8 +164,8 @@ public class AdminController {
 			return mv;
 			
 	}
-	@RequestMapping(value="saveProd1",method=RequestMethod.POST)
-	public String saveProd1(HttpServletRequest req,@RequestParam("file")MultipartFile file)
+	@RequestMapping(value="/saveProd1",method=RequestMethod.POST)
+	public ModelAndView saveProd1(HttpServletRequest req,@RequestParam("file")MultipartFile file)
 	{
 		int ppid=Integer.parseInt(req.getParameter("pid"));
 		Product prod=productdao.getProductbyID(ppid);
@@ -185,7 +191,7 @@ public class AdminController {
 		productdao.insertProduct(prod);
 		try {
 			byte [] imagebyte=file.getBytes();
-			BufferedOutputStream fos=new BufferedOutputStream(new FileOutputStream(filepath+"/resources/"+filename));
+			BufferedOutputStream fos=new BufferedOutputStream(new FileOutputStream(filepath+"/resources/images"+filename));
 			fos.write(imagebyte);
 			fos.close();
 			
@@ -200,8 +206,11 @@ public class AdminController {
 	   // mv.addObject("list",productdao.retrieveCategory());
 	    ////mv.addObject("slist",productdao.retrieveSupplier());
 	    
-		//return mv;
-		  return "redirect:productAdminList";
+		// mv.setViewName("adding");
+		 ModelAndView mv=new ModelAndView("productAdminList");
+		   mv.addObject("abc",productdao.retrieveProducts());
+		   
+	      return mv;
 	}
 	
 	
