@@ -25,17 +25,17 @@
     </thead>
     <tbody>
       
-      <c:forEach items="${carts}" var="cat">
-      <tr>
+     <c:forEach items="${carts}" var="cat">
+     <tr>
         <td>${cat.cartProductID}</td>
         <td>${cat.cartProductName}</td>       
         <td><a href="deletePCart?pid=${cat.cartProductID}">Delete</a></td>
           </tr>
-        </c:forEach>           
+           </c:forEach> 
     </tbody>
   </table>  
   <a href="${pageContext.request.contextPath}/" class="btn btn-info" role="button">Continue Shopping</a>
-<input type="submit" class="btn btn-info" value="Check Out">
+ <a href="${pageContext.request.contextPath}/checkOut" class="btn btn-info" role="button">Check Out</a>
 
 </div>
 

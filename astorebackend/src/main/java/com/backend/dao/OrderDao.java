@@ -1,5 +1,10 @@
 package com.backend.dao;
 
-public interface OrderDao {
+import com.backend.model.Category;
+import com.backend.model.Order;
 
+public interface OrderDao {
+	
+
+	public void insert(Order order);
 }

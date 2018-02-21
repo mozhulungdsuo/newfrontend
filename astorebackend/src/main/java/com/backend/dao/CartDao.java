@@ -9,4 +9,6 @@ public interface CartDao {
 public Cart getCartById(int pid,String email);
 public List<Cart> retrieveCart(int cid);
 public void deleteProdCart(Cart cart);
+public void deleteCart(int cartid);
+public List<Cart> findCartByEmailId(String email);
 }

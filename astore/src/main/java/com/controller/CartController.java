@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,6 +21,7 @@ import com.backend.dao.ProductDao;
 import com.backend.dao.SupplierDao;
 import com.backend.dao.UserDao;
 import com.backend.model.Cart;
+import com.backend.model.Order;
 import com.backend.model.Product;
 import com.backend.model.User;
 
@@ -38,12 +40,41 @@ UserDao userdao;
 CartDao cartdao;
 @Autowired
 OrderDao orderdao;
-
-@RequestMapping(value="checkOut")
-public ModelAndView checkOut()
+@RequestMapping(value="orderProcess",method=RequestMethod.POST)
+public ModelAndView orderProcess(HttpServletRequest request)
 {
-	return null;
+	ModelAndView mv=new ModelAndView("invoice");
+	Order order=new Order();
+	Principal principal=request.getUserPrincipal();
+	String userMail=principal.getName();
+	Double total=Double.parseDouble(request.getParameter("total"));
+	String payment=request.getParameter("payment");
+	User user=userdao.getUserById(userMail);
+	order.setUser(user);
+    order.setTotal(total);
+    order.setPayment(payment);
+    orderdao.insert(order);
+    mv.addObject("oderdetails",user);
+    return mv;
+	
+	
 }
+
+@RequestMapping(value="/checkOut",method=RequestMethod.GET)
+public ModelAndView checkOut(/*@RequestParam("cartID") String cartID,*/HttpServletRequest request)
+{
+	
+	Principal principal=request.getUserPrincipal();
+	String email=principal.getName();
+	User user=userdao.getUserById(email);
+	
+	ModelAndView mv=new ModelAndView("shipping");
+	mv.addObject("user",user);
+	mv.addObject("carts",cartdao.findCartByEmailId(email));
+		
+	return mv;
+}
+
 @RequestMapping(value="deletePCart",method=RequestMethod.GET)
 public ModelAndView deleteProd(@RequestParam("pid") String pid,HttpServletRequest request)
 {   
@@ -55,9 +86,11 @@ public ModelAndView deleteProd(@RequestParam("pid") String pid,HttpServletReques
 
 	Cart cr=cartdao.getCartById(ppid, email);
 	cartdao.deleteProdCart(cr);
+	mv.addObject("carts",cartdao.findCartByEmailId(email));
 	return mv;
 }
 
+@SuppressWarnings("null")
 @RequestMapping(value="addToCart",method=RequestMethod.GET)
 public ModelAndView addToCart(HttpServletRequest request)
 {   
@@ -66,7 +99,7 @@ public ModelAndView addToCart(HttpServletRequest request)
 	Principal principal=request.getUserPrincipal();
 	String email=principal.getName();
 	System.out.println(email);
-	//try {
+	try {
 		String pid=request.getParameter("pid");
 		System.out.println(pid);
 		int ppid=Integer.parseInt(pid);
@@ -85,23 +118,21 @@ public ModelAndView addToCart(HttpServletRequest request)
 			cm.setCartProductID(pid);
 			cm.setCartImage(imgname);
 			cm.setCartProductName(productname);
+			cm.setCartImage(imgname);
 			cm.setCartQuantity(quantity);
 			cm.setCartprice(price*quantity);
 			cm.setCartUserDetails(userdao.getUserById(email));
 			cartdao.insertCart(cm);
-			//cartdao.retrieveCart(cm.getCartid());
-			mv.addObject("carts",cartdao.retrieveCart(cm.getCartid()));
-		}
-		else {
-			//give some alert or maybe directly go checkout
-			//add same object to db???
-		}
 			
-	
-	
-	//}finally {
+		}	
+		mv.addObject("carts",cartdao.findCartByEmailId(email));
 		
-	//}
+	
+	
+	}catch(Exception e) {
+		
+		mv.addObject("carts",cartdao.findCartByEmailId(email));
+	}
 		
 	return mv;
 	
