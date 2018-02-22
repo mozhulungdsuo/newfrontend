@@ -52,6 +52,7 @@
      
   
   </table>
+  <input type="hidden" name="imgname" value="${item.imgname}"/>
 <button type="submit" action="addToCart">Add to cart</button>
 </form>
 </div>
