@@ -22,7 +22,7 @@
         <th>Product ID</th>
         <th>Product Name</th>
         <th>Product Image</th>
-        <th>Action</th>        
+        <th>Action </th>        
       </tr>
     </thead>
     <tbody>
@@ -31,8 +31,8 @@
       <tr>
         <td>${cat.pid}</td>
         <td>${cat.pname}</td>  
-        <td><img src="${contextRoot}/${cat.imgname}" width="100" height="100" alt="image not available"></td>    
-        <td><a href="${pageContext.request.contextPath}/updateProd?pid=${cat.pid}">Edit</a>/<a href="${pageContext.request.contextPath}/deleteProd?pid=${cat.pid}">Delete</a></td>
+        <td><img src="${contextRoot}${cat.imgname}" width="100" height="100" alt="No imag available"></td>    
+        <td><a href="${pageContext.request.contextPath}/updateProd?pid=${cat.pid}"> Edit </a>/<a href="${pageContext.request.contextPath}/deleteProd?pid=${cat.pid}">Delete</a></td>
           </tr>
         </c:forEach>           
     </tbody>

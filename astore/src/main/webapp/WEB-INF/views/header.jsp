@@ -10,18 +10,19 @@
       </div>        
       <div class="collapse navbar-collapse" id="myNavbar">
    <ul class="nav navbar-nav">     
-   <li><a href="index">Home</a></li>
+   <li><a href="">Home</a></li>
    <li><a href="${pageContext.request.contextPath}/admin/adding">Admin</a></li>
 
    <li><a  href="${pageContext.request.contextPath}/admin/productAdminList">Admin List</a></li>
   
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Category<span class="caret"></span></a>
         <ul class="dropdown-menu">
+        <c:if test="${pageContext.request.userPrincipal.name != null}">
         <c:forEach items="${list}" var="cat">
           <!-- <option value="${cat.cid}">${cat.cname}</option>-->
           <li><a href="${pageContext.request.contextPath}/productCustList?cid=${cat.cid}">${cat.cname} </a></li>
           </c:forEach>
-        
+        </c:if>
         </ul>
     </li>  
     <li><c:if test="${pageContext.request.userPrincipal.name != null}">

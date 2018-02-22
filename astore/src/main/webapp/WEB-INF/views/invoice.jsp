@@ -22,7 +22,7 @@
     <c:forEach items="${carts}" var="cat">
       <tr>
         <th>Product Name</th>
-         <td>${cart.cartproductname}</td>   
+         <td>${cat.cartproductname}</td>   
       </tr>
       </c:forEach>
     </thead>

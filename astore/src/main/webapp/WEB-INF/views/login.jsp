@@ -18,7 +18,7 @@
 
 <div class="container">
    <h6>LOGIN</h6>
-  <form action="<c:url value="/security_check"/>" method="post">
+  <form action="login" method="post">
   <c:if test="$(not empty error)">
   <div class "error" >${error}</div>
   </c:if>
@@ -33,7 +33,7 @@
     <label><b>Password:</b></label><br>
     <input type="password" placeholder="Enter Password" name="password" required></div>
 <div class="form-group">
-   <button type="Submit" name ="Submit" value="Login" class="btn btn-primary btn-md">Login</button>    
+   <button type="Submit" name ="Submit" value="login" class="btn btn-primary btn-md">Login</button>    
     <button type="Reset" name ="Reset" value="reset" class="btn btn-primary btn-md">Reset</button>    
     </div>
     <div class="form-group">

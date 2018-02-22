@@ -19,7 +19,8 @@
 login-page="/login"
 username-parameter="email" 
 password-parameter="password" 
-login-processing-url="/security_check"
+login-processing-url="/login"
+
 authentication-success-forward-url="/userLogged"
 authentication-failure-forward-url="/accessDenied"
 />

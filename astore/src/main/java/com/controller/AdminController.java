@@ -151,7 +151,7 @@ public class AdminController {
 		productdao.insertProduct(prod);
 		try {
 			byte [] imagebyte=file.getBytes();
-			BufferedOutputStream fos=new BufferedOutputStream(new FileOutputStream(filepath+"/resources/images"+filename));
+			BufferedOutputStream fos=new BufferedOutputStream(new FileOutputStream(filepath+filename));
 			System.out.println(filepath+filename);
 			fos.write(imagebyte);
 			fos.close();
@@ -191,7 +191,7 @@ public class AdminController {
 		productdao.insertProduct(prod);
 		try {
 			byte [] imagebyte=file.getBytes();
-			BufferedOutputStream fos=new BufferedOutputStream(new FileOutputStream(filepath+"/resources/images"+filename));
+			BufferedOutputStream fos=new BufferedOutputStream(new FileOutputStream(filepath+filename));
 			fos.write(imagebyte);
 			fos.close();
 			
@@ -238,7 +238,7 @@ public class AdminController {
 	@RequestMapping("/accessDenied")
 	public String Error()
 	{
-		System.out.println("enter in error page");
+		System.out.println("Invalid username or password");
 		return "error";
 	}
 
