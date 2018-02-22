@@ -10,7 +10,7 @@
       </div>        
       <div class="collapse navbar-collapse" id="myNavbar">
    <ul class="nav navbar-nav">     
-   <li><a href="">Home</a></li>
+   <li><a href="<c:url value="/index" />">Home</a></li>
    <li><a href="${pageContext.request.contextPath}/admin/adding">Admin</a></li>
 
    <li><a  href="${pageContext.request.contextPath}/admin/productAdminList">Admin List</a></li>
@@ -35,7 +35,7 @@
       
   
         <li><a href="register">Register</a></li>
-        <li><a href="login">Login</a></li>
+   <c:if test="${pageContext.request.userPrincipal.name == null}">  <li><a href="login">Login</a></li></c:if>
     <c:if test="${pageContext.request.userPrincipal.name != null}">
 		<c:out value="${SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString()}"></c:out>
 		<h6 style="color:white;" align="right">

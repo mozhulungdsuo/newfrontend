@@ -18,7 +18,8 @@
 
 <div class="container">
    <h6>LOGIN</h6>
-  <form action="login" method="post">
+   <c:url var="login" value="/login" />
+  <form action="${login}" method="post">
   <c:if test="$(not empty error)">
   <div class "error" >${error}</div>
   </c:if>

@@ -13,7 +13,9 @@
 <title>Error</title>
 </head>
 <body>
-<%@include file="/WEB-INF/views/header.jsp"%>
+
 Invalid access!!! Contact Admin!!!
+<a href="<c:url value="/index" /> ">BACK</a>
+
 </body>
 </html>

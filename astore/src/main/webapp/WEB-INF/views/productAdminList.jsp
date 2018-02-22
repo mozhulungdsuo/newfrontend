@@ -15,7 +15,8 @@
 </head>
 <body>
 <%@include file="/WEB-INF/views/header.jsp"%>
-<div class="container">            
+<div class="container"> 
+      
   <table class="table">
     <thead>
       <tr>
@@ -36,7 +37,8 @@
           </tr>
         </c:forEach>           
     </tbody>
-  </table>  
+  </table> 
+
 </div>
 </body>
 </html>

@@ -67,9 +67,9 @@
      
       <form method="post" action="${pageContext.request.contextPath}/saveProd" enctype="multipart/form-data">
     <div class="form-group">
-      <label for="pid">Product ID:</label>
+      <!-- <label for="pid">Product ID:</label>
       <input type="text" class="form-control" id="pid" placeholder="Enter product ID" name="pid">
-    </div>
+    </div>-->
     <div class="form-group">
       <label for="pname">Product Name:</label>
       <input type="text" class="form-control" id="pname" placeholder="Enter product name" name="pname">

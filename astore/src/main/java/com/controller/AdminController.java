@@ -43,13 +43,13 @@ public class AdminController {
 	@Autowired
 	SupplierDao supplierDao;
 	
-	@RequestMapping(value="/admin/productAdminList",method = RequestMethod.GET)
+	@RequestMapping(value="/admin/productAdminList")
 	public ModelAndView productAdminList()
 		{  
 		   ModelAndView mv=new ModelAndView("productAdminList");
 		   mv.addObject("abc",productdao.retrieveProducts());
 		   
-	      return mv;
+		return mv;
 		
 	  }
 	@RequestMapping(value="/updateProd",method=RequestMethod.GET)
@@ -128,9 +128,9 @@ public class AdminController {
 	{
 		ModelAndView mv=new ModelAndView();
 		Product prod=new Product();
-		int ppid=Integer.parseInt(req.getParameter("pid"));
-		prod.setPid(ppid);
-		System.out.println(req.getParameter("pid"));
+		//int ppid=Integer.parseInt(req.getParameter("pid"));
+		//prod.setPid(ppid);
+		//System.out.println(req.getParameter("pid"));
 		prod.setPname(req.getParameter("pname"));
 		prod.setDescription(req.getParameter("description"));
 		prod.setPrice(req.getParameter("price"));
@@ -159,7 +159,7 @@ public class AdminController {
 		}catch(Exception e) {
 			System.out.println("error");
 			
-		}
+		}   //mv.addObject("abc",productdao.retrieveProducts());
 		    mv.setViewName("adding");
 			return mv;
 			
@@ -207,16 +207,21 @@ public class AdminController {
 	    ////mv.addObject("slist",productdao.retrieveSupplier());
 	    
 		// mv.setViewName("adding");
-		 ModelAndView mv=new ModelAndView("productAdminList");
+		 //ModelAndView mv=new ModelAndView("productAdminList");
+		  // mv.addObject("abc",productdao.retrieveProducts());
+		ModelAndView mv=new ModelAndView("productAdminList");
 		   mv.addObject("abc",productdao.retrieveProducts());
 		   
 	      return mv;
+	     
 	}
 	
 	
 	
 	
-	private String getPrincipal(){
+	
+	
+	/*private String getPrincipal(){
         
 		  String email = null;
 	        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -228,7 +233,7 @@ public class AdminController {
 	        }
 	        return email;
       
-    }
+    }*/
 	
 	@RequestMapping("/logout")
 	public String logout()

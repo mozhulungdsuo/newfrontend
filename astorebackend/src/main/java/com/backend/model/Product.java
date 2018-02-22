@@ -16,7 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 @Entity
 public class Product {
 @Id
-//@GeneratedValue
+@GeneratedValue
 private int pid;
 private String pname;
 private String description;
